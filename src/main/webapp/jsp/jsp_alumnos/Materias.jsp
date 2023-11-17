@@ -22,21 +22,6 @@
                 Materia
             </th>
         </tr>
-        <tr>
-            <td class="tabletd">
-                Lengua
-            </td>
-        </tr>
-        <tr>
-            <td class="tabletd">
-                Matematica
-            </td>
-        </tr>
-        <tr>
-            <td class="tabletd">
-                Historia
-            </td>
-        </tr>
         <c:choose>
             <c:when test="${empty materias}">
                 <tr>
@@ -49,7 +34,7 @@
                 <c:forEach items="${materias}" var="materia">
                     <tr>
                         <td class="tabletd">
-                            ${materia.nombre}
+                            <a href="materiaDetalle?idMateria=${materia.idMateria}&origen=materias">${materia.nombre}</a>
                         </td>
                     </tr>
                 </c:forEach>

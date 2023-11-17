@@ -77,6 +77,11 @@ public class MateriaServlet extends HttpServlet {
                     request.setAttribute("materias", materiaDAO.listar());
                     request.getRequestDispatcher("/jsp/jsp_alumnos/Calificaciones.jsp").forward(request, response);
                     break;
+                case "/jsp/jsp_alumnos/materiaDetalle":
+                    int id = Integer.parseInt(request.getParameter("idMateria"));
+                    request.setAttribute("materia", materiaDAO.buscar(id));
+                    request.getRequestDispatcher("/jsp/jsp_alumnos/calificaciones").forward(request, response);
+                    break;
                 default:
                     response.sendError(404, "Recurso no encontrado");
             }

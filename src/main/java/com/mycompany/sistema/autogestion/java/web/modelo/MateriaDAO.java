@@ -56,8 +56,23 @@ public class MateriaDAO implements DAO<MateriaBean, Integer> {
     }
 
     @Override
-    public MateriaBean buscar(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public MateriaBean buscar(Integer id) {
+        MateriaBean m = null;
+        String query = "SELECT * FROM materia WHERE id_materia = ?";
+        try(Connection con = ConnectionPool.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, id);
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    m = rsRowToMateria(rs);
+                }
+            } catch (SQLException ex){
+                throw new RuntimeException(ex);
+            }
+        } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+        return m;
     }
     
     public int obtenerIDporMateria(String materia){

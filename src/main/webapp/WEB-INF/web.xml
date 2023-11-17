@@ -34,12 +34,6 @@
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CalificacionServlet</servlet-name>
-        <url-pattern>/jsp/jsp_alumnos/calificaciones</url-pattern>
-        <url-pattern>/jsp/jsp_profesor/calificacion</url-pattern>
-        <url-pattern>/jsp/jsp_profesor/addCalificacion</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CursoServlet</servlet-name>
         <url-pattern>/jsp/jsp_profesor/CursoServlet</url-pattern>
     </servlet-mapping>
@@ -63,6 +57,13 @@
         <url-pattern>/jsp/jsp_alumnos/materiasCalif</url-pattern>
         <url-pattern>/jsp/jsp_alumnos/materias</url-pattern>
         <url-pattern>/jsp/jsp_profesor/materias</url-pattern>
+        <url-pattern>/jsp/jsp_alumnos/materiaDetalle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalificacionServlet</servlet-name>
+        <url-pattern>/jsp/jsp_profesor/addCalificacion</url-pattern>
+        <url-pattern>/jsp/jsp_profesor/calificacion</url-pattern>
+        <url-pattern>/jsp/jsp_alumnos/calificaciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

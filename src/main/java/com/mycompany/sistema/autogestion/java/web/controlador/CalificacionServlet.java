@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionDAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.MateriaBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.MateriaDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.ProfesorDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
@@ -77,7 +78,11 @@ public class CalificacionServlet extends HttpServlet {
                 case "/jsp/jsp_alumnos/calificaciones":
                     int idAlumno = getIdAlumnoFromIdUsuario(idUsuario);
                     request.setAttribute("calificaciones", calificacionDAO.listarPorIdAlumno(idAlumno));
-                    request.getRequestDispatcher("/jsp/jsp_alumnos/materiasCalif").forward(request, response);         
+                    if(request.getAttribute("materia") != null) {
+                        request.getRequestDispatcher("/jsp/jsp_alumnos/MateriaDetalle.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("/jsp/jsp_alumnos/materiasCalif").forward(request, response);         
+                    }
                 break;
                 case "/jsp/jsp_profesor/calificacion":
                     int idProfesor = obtenerIdProfesorPorIdUsuario(idUsuario);

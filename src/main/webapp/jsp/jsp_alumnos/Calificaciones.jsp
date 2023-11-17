@@ -43,7 +43,7 @@
                             <c:forEach items="${materias}" var="materia">
                                 <c:if test="${materia.idMateria == calificacion.idMateria}">
                                     <td class="tabletd">
-                                        ${materia.nombre}
+                                        <a href="materiaDetalle?idMateria=${materia.idMateria}&origen=calificaciones">${materia.nombre}</a>
                                     </td>
                                 </c:if>
                             </c:forEach>
