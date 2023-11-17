@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionDAO;
-import com.mycompany.sistema.autogestion.java.web.modelo.MateriaBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.MateriaDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.ProfesorDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
