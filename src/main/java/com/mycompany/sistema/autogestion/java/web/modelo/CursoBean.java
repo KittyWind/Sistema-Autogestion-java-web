@@ -8,24 +8,26 @@ import java.io.Serializable;
  * @author Francisco
  */
 public class CursoBean implements Serializable {
-    private int id_cursada;
+    private int idCursada;
     private String anioDivision;
 
     public CursoBean() {
     }
 
-    public CursoBean(int id_cursada, String anioDivision) {
-        this.id_cursada = id_cursada;
+    public CursoBean(int idCursada, String anioDivision) {
+        this.idCursada = idCursada;
         this.anioDivision = anioDivision;
     }
 
-    public int getId_cursada() {
-        return id_cursada;
+    public int getIdCursada() {
+        return idCursada;
     }
 
-    public void setId_cursada(int id_cursada) {
-        this.id_cursada = id_cursada;
+    public void setIdCursada(int idCursada) {
+        this.idCursada = idCursada;
     }
+
+    
 
     public String getAnioDivision() {
         return anioDivision;
