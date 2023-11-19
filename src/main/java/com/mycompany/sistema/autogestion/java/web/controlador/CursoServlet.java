@@ -62,8 +62,20 @@ public class CursoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.setAttribute("cursos", cursoDAO.listar());
-            request.getRequestDispatcher("/jsp/jsp_profesor/Cursos.jsp").forward(request, response);
+            String servletPath = request.getServletPath();
+            switch (servletPath){
+                case "/jsp/jsp_profesor/cursos":
+                    request.setAttribute("cursos", cursoDAO.listar());
+                    request.getRequestDispatcher("/jsp/jsp_profesor/Cursos.jsp").forward(request, response);
+                    break;
+                case "/jsp/jsp_profesor/cursoDetalle":
+                    int id = Integer.parseInt(request.getParameter("idCursada"));
+                    request.setAttribute("curso", cursoDAO.buscar(id));
+                    request.getRequestDispatcher("/jsp/jsp_profesor/AlumnoCurso").forward(request, response);
+                    break;
+                default:
+                    response.sendError(404, "Recurso no encontrado");
+            }
         } catch (Exception e) {
             response.sendError(500, e.getMessage());
         }

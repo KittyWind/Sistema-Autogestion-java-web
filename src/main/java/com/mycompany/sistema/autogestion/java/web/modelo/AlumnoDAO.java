@@ -100,12 +100,13 @@ public class AlumnoDAO implements DAO<AlumnoBean, Integer>  {
         try {
             int idAlumno = rs.getInt("id_alumno");
             int idUsuario = rs.getInt("id_usuario");
+            int idCursada = rs.getInt("id_cursada");
             String nombre = rs.getString("nombre");
             String apellido = rs.getString("apellido");
             String email = rs.getString("email");
             String contrasenia = rs.getString("contraseña");
             Estado estado = Estado.valueOf(rs.getString("estado").toUpperCase());
-            return new AlumnoBean(idAlumno,idUsuario,nombre,apellido,email,contrasenia,estado);
+            return new AlumnoBean(idAlumno,idCursada,idUsuario,nombre,apellido,email,contrasenia,estado);
         } catch(SQLException ex) {
             throw new RuntimeException(ex);
         }

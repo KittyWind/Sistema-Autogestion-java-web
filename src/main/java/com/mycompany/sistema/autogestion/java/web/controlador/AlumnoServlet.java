@@ -61,7 +61,12 @@ public class AlumnoServlet extends HttpServlet {
                 break;
                 case "/jsp/jsp_profesor/AlumnoCurso":
                     request.setAttribute("alumnos", alumnoDAO.listar());
-                    request.getRequestDispatcher("/jsp/jsp_profesor/alumnos.jsp").forward(request, response);
+                    if (request.getAttribute("curso") != null) {
+                        request.getRequestDispatcher("/jsp/jsp_profesor/alumnos.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("/jsp/jsp_profesor/cursos").forward(request, response);
+                    }
+                    
                 break;
             }
 

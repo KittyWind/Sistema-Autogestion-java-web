@@ -35,7 +35,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CursoServlet</servlet-name>
-        <url-pattern>/jsp/jsp_profesor/CursoServlet</url-pattern>
+        <url-pattern>/jsp/jsp_profesor/cursos</url-pattern>
+        <url-pattern>/jsp/jsp_profesor/cursoDetalle</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AlumnoServlet</servlet-name>

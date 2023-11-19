@@ -39,7 +39,8 @@
                     <c:forEach items="${cursos}" var="curso">
                         <tr>
                             <td class="tabletd">
-                                ${curso.anioDivision} <a href="AlumnoCurso" class="tablelink"> ver alumnos</a>
+                                <%-- ${curso.anioDivision} <a href="AlumnoCurso" class="tablelink"> ver alumnos</a> --%>
+                                <a href="cursoDetalle?idCursada=${curso.idCursada}&origen=cursos">${curso.anioDivision}</a>
                             </td>
                         </tr>
                     </c:forEach>

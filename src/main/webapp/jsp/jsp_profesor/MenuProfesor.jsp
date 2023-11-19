@@ -17,7 +17,7 @@
 
     <nav class="navcontainer">
         <h4 class="navh4">${userLogueado.apellido}, ${userLogueado.nombre}</h4>
-        <a href="CursoServlet" class="nava">Gestionar cursos</a>
+        <a href="cursos" class="nava">Gestionar cursos</a>
         <a href="calificacion" class="nava">Gestionar Calificaciones</a>
         <a href="logout" class="nava">Salir</a>
     </nav>

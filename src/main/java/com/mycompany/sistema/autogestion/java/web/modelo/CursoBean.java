@@ -36,5 +36,6 @@ public class CursoBean implements Serializable {
     public void setAnioDivision(String anioDivision) {
         this.anioDivision = anioDivision;
     }
-
+    
+    
 }

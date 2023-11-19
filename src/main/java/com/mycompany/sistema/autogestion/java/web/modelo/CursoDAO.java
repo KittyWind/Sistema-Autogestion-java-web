@@ -57,8 +57,24 @@ public class CursoDAO implements DAO<CursoBean, Integer> {
     }
 
     @Override
-    public CursoBean buscar(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public CursoBean buscar(Integer idCursada) throws Exception {
+        // throw new UnsupportedOperationException("Not supported yet.");
+        CursoBean cu = null;
+        String query = "SELECT * FROM cursada WHERE id_cursada = ?";
+        try(Connection con = ConnectionPool.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, idCursada);
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    cu = rsRowToCurso(rs);
+                }
+            } catch (SQLException ex){
+                throw new RuntimeException(ex);
+            }
+        } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+        return cu;
     }
 
     private void insertarCursos() {

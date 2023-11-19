@@ -45,17 +45,19 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${alumnos}" var="alumno">
-                    <tr>
-                        <td class="tabletd">
-                            ${alumno.nombre}
-                        </td>
-                        <td class="tabletd">
-                            ${alumno.apellido}
-                        </td>
-                        <td class="tabletd">
-                            ${alumno.email}
-                        </td>
-                    </tr>
+                    <c:if test="${alumno.idCursada == curso.idCursada}">
+                        <tr>
+                            <td class="tabletd">
+                                ${alumno.nombre}
+                            </td>
+                            <td class="tabletd">
+                                ${alumno.apellido}
+                            </td>
+                            <td class="tabletd">
+                                ${alumno.email}
+                            </td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </c:otherwise>
         </c:choose>
