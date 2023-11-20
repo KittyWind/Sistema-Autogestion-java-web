@@ -42,6 +42,7 @@
         <servlet-name>AlumnoServlet</servlet-name>
         <url-pattern>/jsp/jsp_profesor/AlumnoCali</url-pattern>
         <url-pattern>/jsp/jsp_profesor/AlumnoCurso</url-pattern>
+        <url-pattern>/jsp/jsp_admin/mostraralumnos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
