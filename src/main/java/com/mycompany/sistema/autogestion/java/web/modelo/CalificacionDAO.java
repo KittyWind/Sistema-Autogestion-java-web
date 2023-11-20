@@ -36,8 +36,15 @@ public class CalificacionDAO implements	DAO<CalificacionBean, Integer> {
     }
 
     @Override
-    public void eliminar(CalificacionBean id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void eliminar(Integer id) throws Exception {
+        String query = "DELETE FROM calificacion WHERE id_calificacion = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection();
+                PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException ex){
+            throw new RuntimeException (ex); 
+        }
     }
 
     @Override

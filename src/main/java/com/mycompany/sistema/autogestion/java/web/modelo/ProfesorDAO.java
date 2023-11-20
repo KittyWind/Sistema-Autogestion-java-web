@@ -24,7 +24,7 @@ public class ProfesorDAO implements DAO<ProfesorBean,Integer> {
     }
 
     @Override
-    public void eliminar(ProfesorBean id) throws Exception {
+    public void eliminar(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

@@ -24,7 +24,7 @@ public class UsuarioDAO implements DAO<UsuarioBean, Integer> {
     }
 
     @Override
-    public void eliminar(UsuarioBean id) throws Exception {
+    public void eliminar(Integer id) throws Exception {
         throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
     }
 

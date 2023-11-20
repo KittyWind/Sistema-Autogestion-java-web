@@ -65,6 +65,7 @@
         <url-pattern>/jsp/jsp_profesor/addCalificacion</url-pattern>
         <url-pattern>/jsp/jsp_profesor/calificacion</url-pattern>
         <url-pattern>/jsp/jsp_alumnos/calificaciones</url-pattern>
+        <url-pattern>/jsp/jsp_profesor/califBorrar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

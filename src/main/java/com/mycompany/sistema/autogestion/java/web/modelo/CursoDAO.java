@@ -35,7 +35,7 @@ public class CursoDAO implements DAO<CursoBean, Integer> {
     }
 
     @Override
-    public void eliminar(CursoBean id) throws Exception {
+    public void eliminar(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

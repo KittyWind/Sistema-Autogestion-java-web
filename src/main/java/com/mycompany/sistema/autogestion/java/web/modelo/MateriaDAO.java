@@ -25,7 +25,7 @@ public class MateriaDAO implements DAO<MateriaBean, Integer> {
     }
 
     @Override
-    public void eliminar(MateriaBean id) throws Exception {
+    public void eliminar(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

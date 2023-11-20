@@ -37,6 +37,8 @@
             </th>
             <th class="tableth">
             </th>
+            <th class="tableth">
+            </th>
         </tr>
         <c:forEach items="${calificaciones}" var="calificacion">
             <tr>
@@ -62,6 +64,9 @@
                 </td>
                 <td class="tabletd">
                     <a href="http://">editar</a>
+                </td>
+                <td class="tabletd">
+                    <a href="califBorrar?idCalificacion=${calificacion.idCalificacion}&origen=calificacion">borrar</a>
                 </td>
             </tr>
         </c:forEach>

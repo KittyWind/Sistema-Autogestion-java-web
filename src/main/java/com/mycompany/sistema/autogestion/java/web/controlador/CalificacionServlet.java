@@ -91,6 +91,11 @@ public class CalificacionServlet extends HttpServlet {
                 case "/jsp/jsp_profesor/addCalificacion":
                     request.getRequestDispatcher("/jsp/jsp_profesor/AgregarCalificaciones.jsp").forward(request, response);
                 break;
+                case "/jsp/jsp_profesor/califBorrar":
+                    int id = Integer.parseInt(request.getParameter("idCalificacion"));
+                    calificacionDAO.eliminar(id);
+                    request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request, response);
+                break;
             }  
         } catch (Exception e) {
             response.sendError(500, e.getMessage());

@@ -25,7 +25,7 @@ public class AlumnoDAO implements DAO<AlumnoBean, Integer>  {
     }
 
     @Override
-    public void eliminar(AlumnoBean id) throws Exception {
+    public void eliminar(Integer id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
