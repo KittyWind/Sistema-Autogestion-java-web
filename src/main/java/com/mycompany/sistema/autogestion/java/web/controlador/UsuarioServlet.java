@@ -7,7 +7,15 @@ package com.mycompany.sistema.autogestion.java.web.controlador;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// import com.mycompany.sistema.autogestion.java.web.modelo.AdminDAO;
+// import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
+// import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionBean;
+// import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionDAO;
+// import com.mycompany.sistema.autogestion.java.web.modelo.MateriaDAO;
+// import com.mycompany.sistema.autogestion.java.web.modelo.ProfesorDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
+import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioDAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.DAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,6 +30,13 @@ import jakarta.servlet.http.HttpSession;
  */
 @WebServlet(name = "UsuarioServlet", urlPatterns = {"/UsuarioServlet"})
 public class UsuarioServlet extends HttpServlet {
+
+    private DAO<UsuarioBean, Integer> usuarioDAO;
+
+    @Override
+    public void init() throws ServletException {
+        usuarioDAO = new UsuarioDAO();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -63,6 +78,17 @@ public class UsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         int idUsuario = obtenerIdUsuarioDesdeSesion(session); // Obtener el ID del usuario desde la sesión
+        try {
+            String servletPath = request.getServletPath();
+            switch (servletPath){
+                case "/jsp/jsp_admin/mostrarUsuarios":
+                    request.setAttribute("usuarios", usuarioDAO.listar());
+                    request.getRequestDispatcher("/jsp/jsp_admin/MostrarUsuarios.jsp").forward(request, response);
+                break;
+            }
+        } catch (Exception e) {
+            response.sendError(500, e.getMessage());
+        }
     }
 
     /**
@@ -80,6 +106,7 @@ public class UsuarioServlet extends HttpServlet {
         return usuario.getIdUsuario();
     }
 
+
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -87,6 +114,7 @@ public class UsuarioServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    
     /**
      * Returns a short description of the servlet.
      *

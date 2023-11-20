@@ -44,7 +44,38 @@ public class AdminDAO implements DAO<AdminBean, Integer> {
     @Override
     public AdminBean buscar(Integer id) throws Exception {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscar'");
+        AdminBean ad = null;
+        String query = "SELECT * FROM administrador ad\n" + //
+                       "INNER JOIN usuario u ON u.id_usuario = ad.id_usuario\n" + //
+                       "WHERE a.id_usuario = ?";
+        try(Connection con = ConnectionPool.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, id);
+            try(ResultSet rs = ps.executeQuery()) {
+                if(rs.next()) {
+                    ad = rsRowToAdmin(rs);
+                }
+            } catch(SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return ad;
     }
     
+    private AdminBean rsRowToAdmin(ResultSet rs) {
+        try {
+            int idAdmin = rs.getInt("id_administrador");
+            int idUsuario = rs.getInt("id_usuario");
+            String nombre = rs.getString("nombre");
+            String apellido = rs.getString("apellido");
+            String email = rs.getString("email");
+            String contrasenia = rs.getString("contraseña");
+            Estado estado = Estado.valueOf(rs.getString("estado").toUpperCase());
+            return new AdminBean(idAdmin,idUsuario, nombre, apellido, email, contrasenia, estado);
+        } catch(SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }

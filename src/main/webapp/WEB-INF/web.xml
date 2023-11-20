@@ -48,6 +48,10 @@
         <url-pattern>/jsp/jsp_profesor/AlumnoCurso</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <url-pattern>/jsp/jsp_admin/mostrarUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>

@@ -15,7 +15,7 @@
     <c:import url= "/header.jsp"/>
     <nav class="navcontainer">
         <h4 class="navh4">Usuario: Administrador</h4>
-        <a href="./jsp_admin_usuario/BuscarUsuario.html" class="nava">Gestionar Usuarios</a>
+        <a href="mostrarUsuarios" class="nava">Gestionar Usuarios</a>
         <a href="./CursosAdmin.html" class="nava">Gestionar Cursos</a>
         <a href="../../index.jsp" class="nava">Salir</a>
     </nav>

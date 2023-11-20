@@ -8,39 +8,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Academico Usuario buscado</title>
-    <link rel="stylesheet" href="../../../css/stylescomun.css">
-    <link rel="stylesheet" href="../../../css/stylesmedia.css">
+    <link rel="stylesheet" href="../../css/stylescomun.css">
+    <link rel="stylesheet" href="../../css/stylesmedia.css">
 </head>
 <body>
     <c:import url= "/header.jsp"/>
-
+    
     <table class="tablecontainer">
         <tr>
             <th class = "tableth">
-                mostrar informacion
+                nombre
+            </th>
+            <th class = "tableth">
+                apellido
+            </th>
+            <th class = "tableth">
+                mail
+            </th>
+            <th class = "tableth">
+                clave
+            </th>
+            <th class = "tableth">
+                estado
+            </th>
+            <th class = "tableth">
             </th>
         </tr>
+        <c:forEach items="${usuarios}" var = "usuario">
         <tr>
             <td class="tabletd">
-                alejandro
+                ${usuario.nombre}
             </td>
-            
-        </tr>
-        <tr>
             <td class="tabletd">
-                Quispe 
+                ${usuario.apellido}
             </td>
-        </tr>
-        <tr>
             <td class="tabletd">
-                Alejandro@hotmail.com 
+                ${usuario.email}
             </td>
-        </tr>
-        <tr>
+            <td class="tabletd">
+                ${usuario.contrasenia}
+            </td>
+            <td class="tabletd">
+                ${usuario.estado}
+            </td>
             <td class="tabletd">
                 <a href="./EditarUsuario.jsp">editar informacion</a>
             </td>
         </tr>
+        </c:forEach>
     </table>
 
     <a class = "asalir" href="./BuscarUsuario.jsp">Salir</a>
