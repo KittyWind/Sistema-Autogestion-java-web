@@ -18,6 +18,10 @@
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.CursoServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.UsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AlumnoServlet</servlet-name>
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.AlumnoServlet</servlet-class>
     </servlet>
