@@ -26,7 +26,14 @@ public class UsuarioDAO implements DAO<UsuarioBean, Integer> {
 
     @Override
     public void eliminar(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        String query = "DELETE FROM usuario WHERE id_usuario = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection();
+                PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException ex){
+            throw new RuntimeException (ex); 
+        }
     }
 
     @Override

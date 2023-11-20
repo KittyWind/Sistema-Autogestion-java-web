@@ -18,10 +18,6 @@
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.CursoServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UsuarioServlet</servlet-name>
-        <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.UsuarioServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AlumnoServlet</servlet-name>
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.AlumnoServlet</servlet-class>
     </servlet>
@@ -46,10 +42,6 @@
         <servlet-name>AlumnoServlet</servlet-name>
         <url-pattern>/jsp/jsp_profesor/AlumnoCali</url-pattern>
         <url-pattern>/jsp/jsp_profesor/AlumnoCurso</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UsuarioServlet</servlet-name>
-        <url-pattern>/jsp/jsp_admin/mostrarUsuarios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

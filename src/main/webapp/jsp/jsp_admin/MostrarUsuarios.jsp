@@ -52,7 +52,7 @@
                 ${usuario.estado}
             </td>
             <td class="tabletd">
-                <a href="./EditarUsuario.jsp">editar informacion</a>
+                <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a>
             </td>
         </tr>
         </c:forEach>
