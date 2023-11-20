@@ -6,11 +6,15 @@ package com.mycompany.sistema.autogestion.java.web.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -57,7 +61,8 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        int idUsuario = obtenerIdUsuarioDesdeSesion(session); // Obtener el ID del usuario desde la sesión
     }
 
     /**
@@ -68,6 +73,14 @@ public class UsuarioServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
+     private int obtenerIdUsuarioDesdeSesion(HttpSession session) {
+        // Asumo que el ID del usuario está almacenado en la sesión con el nombre "user"
+        UsuarioBean usuario = (UsuarioBean) session.getAttribute("userLogueado");
+        return usuario.getIdUsuario();
+    }
+
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
