@@ -40,35 +40,35 @@
             <th class="tableth">
             </th>
         </tr>
-        <c:forEach items="${calificaciones}" var="calificacion">
-            <tr>
-                <c:forEach items="${alumnos}" var="alumno">
-                    <c:if test="${alumno.idAlumno == calificacion.idAlumno}">
-                        <td class="tabletd">
-                            ${alumno.nombre}${alumno.apellido}
-                        </td>
-                    </c:if>
-                </c:forEach>
-                <c:forEach items="${materias}" var="materia">
-                    <c:if test="${materia.idMateria == calificacion.idMateria}">
-                        <td class="tabletd">
-                            ${materia.nombre}
-                        </td>
-                    </c:if>
-                </c:forEach>
-                <td class="tabletd">
-                    ${calificacion.numExamen}
-                </td>
-                <td class="tabletd">
-                    ${calificacion.nota}
-                </td>
-                <td class="tabletd">
-                    <a href="http://">editar</a>
-                </td>
-                <td class="tabletd">
-                    <a href="califBorrar?idCalificacion=${calificacion.idCalificacion}&origen=calificacion">borrar</a>
-                </td>
-            </tr>
+        <c:forEach items="${alumnos}" var="alumno">
+            <c:forEach items="${calificaciones}" var="calificacion">
+                <c:if test="${alumno.idAlumno == calificacion.idAlumno}">
+                    <c:forEach items="${materias}" var="materia">
+                        <c:if test="${materia.idMateria == calificacion.idMateria}">
+                            <tr>
+                                <td class="tabletd">
+                                    ${alumno.nombre} ${alumno.apellido}
+                                </td>
+                                <td class="tabletd">
+                                    ${materia.nombre}
+                                </td>
+                                <td class="tabletd">
+                                    ${calificacion.numExamen}
+                                </td>
+                                <td class="tabletd">
+                                    ${calificacion.nota}
+                                </td>
+                                <td class="tabletd">
+                                    <a href="http://">editar</a>
+                                </td>
+                                <td class="tabletd">
+                                    <a href="califBorrar?idCalificacion=${calificacion.idCalificacion}&origen=calificacion">borrar</a>
+                                </td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </c:if>
+            </c:forEach>
         </c:forEach>
         <tr>
             <td class="tabletd" colspan="4">

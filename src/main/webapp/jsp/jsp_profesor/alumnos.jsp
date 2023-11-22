@@ -45,7 +45,7 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${alumnos}" var="alumno">
-                    <c:if test="${alumno.idCursada == curso.idCursada}">
+                    <c:if test="${alumno.idCursada == curso.idCursada && alumno.estado == 'ACTIVO'}">
                         <tr>
                             <td class="tabletd">
                                 ${alumno.nombre}
