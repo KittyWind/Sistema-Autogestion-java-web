@@ -51,9 +51,18 @@
             <td class="tabletd">
                 ${usuario.estado}
             </td>
-            <td class="tabletd">
-                <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a>
-            </td>
+            <c:choose>
+                <c:when test = "${usuario.estado == 'ACTIVO'}">
+                    <td class="tabletd">
+                        <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a>
+                    </td>
+                </c:when>
+                <c:otherwise>
+                    <td class="tabletd">
+                        <%-- <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a> --%>
+                    </td>
+                </c:otherwise>
+            </c:choose>
         </tr>
         </c:forEach>
     </table>

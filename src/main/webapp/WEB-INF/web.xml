@@ -45,6 +45,7 @@
     <servlet-mapping>
         <servlet-name>UsuarioServlet</servlet-name>
         <url-pattern>/jsp/jsp_admin/mostrarUsuarios</url-pattern>
+        <url-pattern>/jsp/jsp_admin/borrarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AlumnoServlet</servlet-name>

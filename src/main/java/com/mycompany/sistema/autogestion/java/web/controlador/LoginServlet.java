@@ -4,6 +4,7 @@ package com.mycompany.sistema.autogestion.java.web.controlador;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.mycompany.sistema.autogestion.java.web.modelo.Estado;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioDAO;
 
@@ -73,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         String contrasenia = request.getParameter("contrasenia");
         UsuarioDAO uDao = new UsuarioDAO();
         UsuarioBean user = uDao.buscar(mail, contrasenia);
-        if (user != null) {
+        if (user != null && user.getEstado() == Estado.ACTIVO) {
             String rol = uDao.buscarRol(user.getIdUsuario());
             if(rol != null) {
                 HttpSession session = request.getSession();

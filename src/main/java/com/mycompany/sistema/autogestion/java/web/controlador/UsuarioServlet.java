@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.DAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.Estado;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -70,11 +71,15 @@ public class UsuarioServlet extends HttpServlet {
                 case "/jsp/jsp_admin/borrarUsuario":
                     int id = Integer.parseInt(request.getParameter("idUsuario"));
                     UsuarioBean u = usuarioDAO.buscar(id);
+                    u.setEstado(Estado.INACTIVO);
+                    usuarioDAO.modificar(u);
+                    request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
+                    break;
                 default:
                     break;
             }
         } catch (Exception e) {
-            // TODO: handle exception
+            response.sendError(500, e.getMessage());
         }
     }
 

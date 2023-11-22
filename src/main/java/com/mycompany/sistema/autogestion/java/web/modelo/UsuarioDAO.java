@@ -21,7 +21,19 @@ public class UsuarioDAO implements DAO<UsuarioBean, Integer> {
 
     @Override
     public void modificar(UsuarioBean entidad) throws Exception {
-        throw new UnsupportedOperationException("Unimplemented method 'modificar'");
+        // throw new UnsupportedOperationException("Unimplemented method 'modificar'");
+        String query = "UPDATE usuario SET nombre = ?, apellido = ?,email = ?,contraseña = ?, estado = ? WHERE usuario.id_usuario = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, entidad.getNombre());
+            ps.setString(2, entidad.getApellido());
+            ps.setString(3, entidad.getEmail());
+            ps.setString(4, entidad.getContrasenia());
+            ps.setObject(5, entidad.getEstado().toString().toLowerCase());
+            ps.setInt(6, entidad.getIdUsuario());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
@@ -54,7 +66,22 @@ public class UsuarioDAO implements DAO<UsuarioBean, Integer> {
 
     @Override
     public UsuarioBean buscar(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Unimplemented method 'buscar'");
+        UsuarioBean u = null;
+        String query = "SELECT * FROM usuario u WHERE u.id_usuario = ?";
+        try(Connection con = ConnectionPool.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, id);
+            try(ResultSet rs = ps.executeQuery()) {
+                if(rs.next()) {
+                    u = rsRowToUsuario(rs);
+                }
+            } catch(SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return u;
     }
 
     public String buscarRol(int id) {
