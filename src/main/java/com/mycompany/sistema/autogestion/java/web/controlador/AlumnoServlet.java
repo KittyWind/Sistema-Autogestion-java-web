@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.DAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.Estado;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -67,14 +68,16 @@ public class AlumnoServlet extends HttpServlet {
                         request.getRequestDispatcher("/jsp/jsp_profesor/cursos").forward(request, response);
                     }
                 break;
-                case "/jsp/jsp_admin/mostraralumnos":
-                    request.setAttribute("alumnos", alumnoDAO.listar());
-                    request.getRequestDispatcher("/jsp/jsp_admin/Alumnos.jsp").forward(request, response);
-                case "/jsp/jsp_admin/borrarAlumno":
-                    int id = Integer.parseInt(request.getParameter("idAlumno"));
-                    alumnoDAO.eliminar(id);
-                    request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
-                break;
+                // case "/jsp/jsp_admin/mostraralumnos":
+                //     request.setAttribute("alumnos", alumnoDAO.listar());
+                //     request.getRequestDispatcher("/jsp/jsp_admin/Alumnos.jsp").forward(request, response);
+                // case "/jsp/jsp_admin/borrarAlumno":
+                //     int id = Integer.parseInt(request.getParameter("idAlumno"));
+                //     AlumnoBean a = alumnoDAO.buscar(id);
+                //     a.setEstado(Estado.INACTIVO);
+                //     alumnoDAO.modificar(a);
+                //     request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
+                // break;
             }
 
         } catch (Exception e) {

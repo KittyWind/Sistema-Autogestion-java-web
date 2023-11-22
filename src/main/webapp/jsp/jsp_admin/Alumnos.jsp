@@ -52,7 +52,7 @@
                 ${alumno.estado}
             </td>
             <td class="tabletd">
-                <a href="borrarAlumno?idAlumno=${alumno.idAlumno}&origen=mostrarAlumnos">borrar</a>
+                <a href="borrarAlumno?idAlumno=${alumno.idAlumno}&origen=mostraralumnos">borrar</a>
             </td>
         </tr>
         </c:forEach>
