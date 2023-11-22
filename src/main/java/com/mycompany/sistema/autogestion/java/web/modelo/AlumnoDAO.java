@@ -26,14 +26,7 @@ public class AlumnoDAO implements DAO<AlumnoBean, Integer>  {
 
     @Override
     public void eliminar(Integer id) throws Exception {
-        String query = "DELETE FROM alumno WHERE id_alumno = ?";
-        try (Connection con = ConnectionPool.getInstance().getConnection();
-                PreparedStatement ps = con.prepareStatement(query)){
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (SQLException ex){
-            throw new RuntimeException (ex); 
-        } 
+       throw new UnsupportedOperationException("Not supported yet.");
     }
 
     // obtener todos los alumnos almacenados en la BD
