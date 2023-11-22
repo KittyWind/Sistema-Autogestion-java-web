@@ -13,7 +13,6 @@ import com.mycompany.sistema.autogestion.java.web.modelo.DAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.Estado;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

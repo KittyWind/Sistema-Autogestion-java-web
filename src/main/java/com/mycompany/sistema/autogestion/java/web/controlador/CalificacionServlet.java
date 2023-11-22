@@ -3,6 +3,7 @@ package com.mycompany.sistema.autogestion.java.web.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.CalificacionBean;
@@ -133,16 +134,83 @@ public class CalificacionServlet extends HttpServlet {
             throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        int numExamen = Integer.parseInt(request.getParameter("numExamen"));
-        int nota = Integer.parseInt(request.getParameter("nota"));
+        String numexamen = request.getParameter("numExamen");
+        String notaprueba = request.getParameter("nota");
         String materia = request.getParameter("materia");
-        UsuarioDAO u = new UsuarioDAO();
-        int id = u.obtenerIDporNombre(nombre, apellido);
-        MateriaDAO m = new MateriaDAO();
-        int idMateria = m.obtenerIDporMateria(materia);
-        CalificacionBean c = new CalificacionBean(nota,numExamen,id,idMateria);
-        calificacionDAO.insertar(c);
-        request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request,response);
+        if (nombre != "" || apellido != "" || numexamen != "" || notaprueba != "" || materia != "") 
+        {
+            if (nombre != "" && apellido != "") 
+            {
+                UsuarioDAO u = new UsuarioDAO();
+                int id = u.obtenerIDporNombre(nombre, apellido);
+                if (id != 0) 
+                {
+                    if (materia != "") 
+                    {
+                        MateriaDAO m = new MateriaDAO();
+                        int idMateria = m.obtenerIDporMateria(materia);
+                        if(id != 0)
+                        {
+                            int numExamen = Integer.parseInt(numexamen);
+                            int nota = Integer.parseInt(notaprueba);
+                            CalificacionBean c = new CalificacionBean(nota,numExamen,id,idMateria);
+                            calificacionDAO.insertar(c);
+                            request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request,response);
+                        }
+                        else
+                        {
+                            request.setAttribute("hayErrorMateria", true);
+                            request.setAttribute("materiaError", "Materia no encontrada");
+                            request.getRequestDispatcher("AgregarCalificaciones.jsp").forward(request, response);
+                        }
+                    } 
+                    else 
+                    {
+                        request.setAttribute("hayErrorVacio", true);
+                        request.setAttribute("VacioError", "Credenciales vacias");
+                        request.getRequestDispatcher("AgregarCalificaciones.jsp").forward(request, response);
+                    }
+                } 
+                else 
+                {
+                    request.setAttribute("hayErrorAlumno", true);
+                    request.setAttribute("alumnoError", "alumno no encontrado");
+                    request.getRequestDispatcher("AgregarCalificaciones.jsp").forward(request, response);
+                }
+            } 
+            else 
+            {
+                request.setAttribute("hayErrorVacio", true);
+                request.setAttribute("VacioError", "Credenciales vacias");
+                request.getRequestDispatcher("AgregarCalificaciones.jsp").forward(request, response);
+            }
+            
+        } 
+        else 
+        {
+            request.setAttribute("hayErrorVacio", true);
+            request.setAttribute("VacioError", "Credenciales vacias");
+            request.getRequestDispatcher("AgregarCalificaciones.jsp").forward(request, response);
+        }
+        
+        
+        // UsuarioDAO u = new UsuarioDAO();
+        // int id = u.obtenerIDporNombre(nombre, apellido);
+        
+        // if (Objects.equals(id, prueba)) 
+        // {
+        //     MateriaDAO m = new MateriaDAO();
+        //     int idMateria = m.obtenerIDporMateria(materia);
+            
+        // } 
+        // else 
+        // {
+        //     request.setAttribute("hayError", true);
+        //     request.setAttribute("mensajeError", "Credenciales incorrectas");
+        //     request.getRequestDispatcher("AgregarCalificaciones.jsp").forward(request, response);
+        // }
+        
+        
     }
 
     /**

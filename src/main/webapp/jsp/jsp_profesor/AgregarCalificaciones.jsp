@@ -16,6 +16,9 @@
         <form action="addCalificacion" class="form" method="post">
             <h4 class = formheader>Agregar curso</h4>
             <div class="container">
+                <c:if test="${hayErrorVacio}">
+                        <p>${VacioError}</p>
+                </c:if>
                 <div class="formgroup">
                     <label for="nombre" class="formlabel">Nombre: </label>
                     <input type="text" id="nombre" name="nombre" class="forminput">
@@ -27,6 +30,9 @@
                     <input type="text" id="apellido" name="apellido" class="forminput">
                     <span class="formspan"></span>
                 </div>
+                <c:if test="${hayErrorAlumno}">
+                        <p>${alumnoError}</p>
+                </c:if>
                 <br>
                 <div class="formgroup">
                     <label for="numExamen" class="formlabel">Numero de examen </label>
@@ -45,6 +51,9 @@
                     <input type="text" id="materia" name="materia" class="forminput">
                     <span class="formspan"></span>
                 </div>
+                <c:if test="${hayErrorMateria}">
+                        <p>${materiaError}</p>
+                </c:if>
                 <br>
                 <input type="submit" value="Ingresar" class="formingresar">
             </div>
