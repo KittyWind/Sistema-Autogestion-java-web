@@ -54,12 +54,12 @@
             <c:choose>
                 <c:when test = "${usuario.estado == 'ACTIVO'}">
                     <td class="tabletd">
-                        <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a>
+                        <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">desactivar</a>
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="tabletd">
-                        <%-- <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a> --%>
+                        <a href="activarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">activar</a>
                     </td>
                 </c:otherwise>
             </c:choose>

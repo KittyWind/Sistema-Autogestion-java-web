@@ -69,10 +69,17 @@ public class UsuarioServlet extends HttpServlet {
                     request.getRequestDispatcher("/jsp/jsp_admin/Usuarios.jsp").forward(request, response);
                     break;
                 case "/jsp/jsp_admin/borrarUsuario":
-                    int id = Integer.parseInt(request.getParameter("idUsuario"));
-                    UsuarioBean u = usuarioDAO.buscar(id);
-                    u.setEstado(Estado.INACTIVO);
-                    usuarioDAO.modificar(u);
+                    int idbaja = Integer.parseInt(request.getParameter("idUsuario"));
+                    UsuarioBean ubaja = usuarioDAO.buscar(idbaja);
+                    ubaja.setEstado(Estado.INACTIVO);
+                    usuarioDAO.modificar(ubaja);
+                    request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
+                    break;
+                case "/jsp/jsp_admin/activarUsuario":
+                    int idalta = Integer.parseInt(request.getParameter("idUsuario"));
+                    UsuarioBean ualta = usuarioDAO.buscar(idalta);
+                    ualta.setEstado(Estado.ACTIVO);
+                    usuarioDAO.modificar(ualta);
                     request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
                     break;
                 default:
