@@ -14,6 +14,10 @@
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.CalificacionServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.UsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CursoServlet</servlet-name>
         <servlet-class>com.mycompany.sistema.autogestion.java.web.controlador.CursoServlet</servlet-class>
     </servlet>
@@ -39,11 +43,13 @@
         <url-pattern>/jsp/jsp_profesor/cursoDetalle</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <url-pattern>/jsp/jsp_admin/mostrarUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AlumnoServlet</servlet-name>
         <url-pattern>/jsp/jsp_profesor/AlumnoCali</url-pattern>
         <url-pattern>/jsp/jsp_profesor/AlumnoCurso</url-pattern>
-        <url-pattern>/jsp/jsp_admin/mostraralumnos</url-pattern>
-        <url-pattern>/jsp/jsp_admin/borrarAlumno</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

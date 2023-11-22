@@ -34,25 +34,25 @@
             <th class = "tableth">
             </th>
         </tr>
-        <c:forEach items="${alumnos}" var = "alumno">
+        <c:forEach items="${usuarios}" var = "usuario">
         <tr>
             <td class="tabletd">
-                ${alumno.nombre}
+                ${usuario.nombre}
             </td>
             <td class="tabletd">
-                ${alumno.apellido}
+                ${usuario.apellido}
             </td>
             <td class="tabletd">
-                ${alumno.email}
+                ${usuario.email}
             </td>
             <td class="tabletd">
-                ${alumno.contrasenia}
+                ${usuario.contrasenia}
             </td>
             <td class="tabletd">
-                ${alumno.estado}
+                ${usuario.estado}
             </td>
             <td class="tabletd">
-                <a href="borrarAlumno?idAlumno=${alumno.idAlumno}&origen=mostraralumnos">borrar</a>
+                <a href="borrarUsuario?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">borrar</a>
             </td>
         </tr>
         </c:forEach>

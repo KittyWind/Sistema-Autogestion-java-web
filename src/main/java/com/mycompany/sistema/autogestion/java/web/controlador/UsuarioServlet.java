@@ -1,46 +1,53 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.mycompany.sistema.autogestion.java.web.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoBean;
-import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
+import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.DAO;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Francisco
+ * @author kitty
  */
-public class AlumnoServlet extends HttpServlet {
-    private DAO<AlumnoBean, Integer> alumnoDAO;
-    
+public class UsuarioServlet extends HttpServlet {
+
+    private DAO<UsuarioBean, Integer> usuarioDAO;
+
     @Override
     public void init() throws ServletException {
-        alumnoDAO = new AlumnoDAO();
+        usuarioDAO = new UsuarioDAO();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlumnoServlet</title>");            
+            out.println("<title>Servlet UsuarioServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AlumnoServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UsuarioServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -52,35 +59,22 @@ public class AlumnoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
         try {
             String servletPath = request.getServletPath();
-            switch (servletPath){
-                case "/jsp/jsp_profesor/AlumnoCali":
-                    request.setAttribute("alumnos", alumnoDAO.listar());
-                    request.getRequestDispatcher("/jsp/jsp_profesor/Calificaciones.jsp").forward(request, response);
-                break;
-                case "/jsp/jsp_profesor/AlumnoCurso":
-                    request.setAttribute("alumnos", alumnoDAO.listar());
-                    if (request.getAttribute("curso") != null) {
-                        request.getRequestDispatcher("/jsp/jsp_profesor/alumnos.jsp").forward(request, response);
-                    } else {
-                        request.getRequestDispatcher("/jsp/jsp_profesor/cursos").forward(request, response);
-                    }
-                break;
-                // case "/jsp/jsp_admin/mostraralumnos":
-                //     request.setAttribute("alumnos", alumnoDAO.listar());
-                //     request.getRequestDispatcher("/jsp/jsp_admin/Alumnos.jsp").forward(request, response);
-                // case "/jsp/jsp_admin/borrarAlumno":
-                //     int id = Integer.parseInt(request.getParameter("idAlumno"));
-                //     AlumnoBean a = alumnoDAO.buscar(id);
-                //     a.setEstado(Estado.INACTIVO);
-                //     alumnoDAO.modificar(a);
-                //     request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
-                // break;
+            switch (servletPath) {
+                case "/jsp/jsp_admin/mostrarUsuarios":
+                    request.setAttribute("usuarios", usuarioDAO.listar());
+                    request.getRequestDispatcher("/jsp/jsp_admin/Usuarios.jsp").forward(request, response);
+                    break;
+                case "/jsp/jsp_admin/borrarUsuario":
+                    int id = Integer.parseInt(request.getParameter("idUsuario"));
+                    UsuarioBean u = usuarioDAO.buscar(id);
+                default:
+                    break;
             }
-
         } catch (Exception e) {
-            response.sendError(500, e.getMessage());
+            // TODO: handle exception
         }
     }
 
@@ -106,6 +100,6 @@ public class AlumnoServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }
