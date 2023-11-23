@@ -5,13 +5,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.mycompany.sistema.autogestion.java.web.modelo.DAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.AlumnoDAO;
 import com.mycompany.sistema.autogestion.java.web.modelo.CursoBean;
 import com.mycompany.sistema.autogestion.java.web.modelo.CursoDAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.ProfesorDAO;
+import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioBean;
+import com.mycompany.sistema.autogestion.java.web.modelo.UsuarioDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -61,10 +66,13 @@ public class CursoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession session = request.getSession();
+            int idUsuario = obtenerIdUsuarioDesdeSesion(session);
         try {
             String servletPath = request.getServletPath();
             switch (servletPath){
                 case "/jsp/jsp_profesor/cursos":
+                    int idProfesor = obtenerIdProfesorPorIdUsuario(idUsuario);
                     request.setAttribute("cursos", cursoDAO.listar());
                     request.getRequestDispatcher("/jsp/jsp_profesor/Cursos.jsp").forward(request, response);
                     break;
@@ -105,4 +113,19 @@ public class CursoServlet extends HttpServlet {
         return "Short description";
     }
 
+    private int obtenerIdUsuarioDesdeSesion(HttpSession session) {
+        // Asumo que el ID del usuario está almacenado en la sesión con el nombre "user"
+        UsuarioBean usuario = (UsuarioBean) session.getAttribute("userLogueado");
+        return usuario.getIdUsuario();
+    }
+
+    private int getIdAlumnoFromIdUsuario(int idUsuario) {
+        AlumnoDAO aDao = new AlumnoDAO();
+        return aDao.buscar(idUsuario).getIdAlumno();
+    }
+
+    private int obtenerIdProfesorPorIdUsuario(int idUsuario) {
+        ProfesorDAO pDao = new ProfesorDAO();
+        return pDao.buscar(idUsuario).getIdProfesor();
+    }
 }

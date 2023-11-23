@@ -96,5 +96,38 @@ public class CursoDAO implements DAO<CursoBean, Integer> {
             throw new RuntimeException(ex);
         }
     }
+
+    public int obtenerIdProfesorPorIdUsuario(int idUsuario) {
+        int idProfesor = -1; // Valor por defecto si no se encuentra el profesor
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            con = ConnectionPool.getInstance().getConnection();
+            String query = "SELECT id_profesor FROM profesor WHERE id_usuario = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, idUsuario);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                idProfesor = rs.getInt("id_profesor");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            // Cierra las conexiones
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+        return idProfesor;
+    }
 }
 

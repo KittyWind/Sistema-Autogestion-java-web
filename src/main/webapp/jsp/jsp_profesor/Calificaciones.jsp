@@ -42,7 +42,7 @@
         </tr>
         <c:forEach items="${alumnos}" var="alumno">
             <c:forEach items="${calificaciones}" var="calificacion">
-                <c:if test="${alumno.idAlumno == calificacion.idAlumno}">
+                <c:if test="${alumno.idAlumno == calificacion.idAlumno && alumno.estado == 'ACTIVO'}">
                     <c:forEach items="${materias}" var="materia">
                         <c:if test="${materia.idMateria == calificacion.idMateria}">
                             <tr>
