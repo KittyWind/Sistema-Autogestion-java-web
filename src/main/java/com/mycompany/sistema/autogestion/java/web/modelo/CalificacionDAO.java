@@ -32,7 +32,19 @@ public class CalificacionDAO implements	DAO<CalificacionBean, Integer> {
 
     @Override
     public void modificar(CalificacionBean entidad) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
+        String query = "UPDATE calificacion SET nota = ?, num_examen = ?,id_alumno = ?,id_materia = ? WHERE id_calificacion = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection();
+                PreparedStatement ps = con.prepareStatement(query)){
+            ps.setInt(1, entidad.getNota());
+            ps.setInt(2, entidad.getNumExamen());
+            ps.setInt(3, entidad.getIdAlumno());
+            ps.setInt(4, entidad.getIdMateria());
+            ps.setInt(5, entidad.getIdCalificacion());
+            ps.executeUpdate();
+        } catch (SQLException ex){
+            throw new RuntimeException (ex); 
+        }
     }
 
     @Override

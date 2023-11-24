@@ -77,6 +77,23 @@ public class CursoDAO implements DAO<CursoBean, Integer> {
         return cu;
     }
 
+    public List<CursoBean> listarPorIdProfesor(int id) {
+        List<CursoBean> cursos = new LinkedList<>();
+        String query = "select cu.* from cursada cu inner join `profesor/cursada` pc on pc.id_cursada = cu.id_cursada inner join profesor p on pc.id_profesor = p.id_profesor where pc.id_profesor = ?;";
+        try (Connection con = ConnectionPool.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    cursos.add(rsRowToCurso(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return cursos;
+    }
+
     private void insertarCursos() {
         // insertar(new CursoBean(contador,"15"));
         // insertar(new CursoBean(contador,"13"));

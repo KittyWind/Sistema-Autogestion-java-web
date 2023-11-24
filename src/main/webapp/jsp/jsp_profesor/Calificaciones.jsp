@@ -59,11 +59,11 @@
                                     ${calificacion.nota}
                                 </td>
                                 <td class="tabletd">
-                                    <a href="http://">editar</a>
+                                    <a href="califEditar?idAlumno=${alumno.idAlumno}&idMateria=${materia.idMateria}&idCalificacion=${calificacion.idCalificacion}&origen=calificacion">editar</a>
                                 </td>
-                                <td class="tabletd">
+                                <%-- <td class="tabletd">
                                     <a href="califBorrar?idCalificacion=${calificacion.idCalificacion}&origen=calificacion">borrar</a>
-                                </td>
+                                </td> --%>
                             </tr>
                         </c:if>
                     </c:forEach>

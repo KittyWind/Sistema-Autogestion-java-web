@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpSession;
  */
 public class CursoServlet extends HttpServlet {
 
-    private DAO<CursoBean, Integer> cursoDAO;
+    private CursoDAO cursoDAO;
     
     @Override
     public void init() throws ServletException {
@@ -73,7 +73,7 @@ public class CursoServlet extends HttpServlet {
             switch (servletPath){
                 case "/jsp/jsp_profesor/cursos":
                     int idProfesor = obtenerIdProfesorPorIdUsuario(idUsuario);
-                    request.setAttribute("cursos", cursoDAO.listar());
+                    request.setAttribute("cursos", cursoDAO.listarPorIdProfesor(idProfesor));
                     request.getRequestDispatcher("/jsp/jsp_profesor/Cursos.jsp").forward(request, response);
                     break;
                 case "/jsp/jsp_profesor/cursoDetalle":
