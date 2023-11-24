@@ -154,9 +154,10 @@ public class CalificacionServlet extends HttpServlet {
                             CalificacionBean c = new CalificacionBean(idCalificacion, notan, numExamenn, idAlumno, idMateria);
                             calificacionDAO.modificar(c);
                             request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request, response);
-                            break;
+                        break;
+                        case "/jsp/jsp_profesor/insertarCalif":
                         default:
-                            break;
+                        break;
                     }
                 } else {
                     request.setAttribute("hayError", true);
