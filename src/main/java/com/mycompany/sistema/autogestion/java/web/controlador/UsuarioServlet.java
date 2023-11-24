@@ -113,22 +113,24 @@ public class UsuarioServlet extends HttpServlet {
             String clave = request.getParameter("clave");
             Estado estado = Estado.valueOf(request.getParameter("estado"));
             int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
-            if(nombre != "" && apellido != "" && email != "" && clave != "")
-            {
-                switch (servletPath) {
-                    case "/jsp/jsp_admin/editarUsuario":
+            switch (servletPath) {
+                case "/jsp/jsp_admin/editarUsuario":
+                    if(nombre != "" && apellido != "" && email != "" && clave != "")
+                    {
                         UsuarioBean u = new UsuarioBean(idUsuario, nombre, apellido, email, clave, estado);
                         usuarioDAO.modificar(u);
                         request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
-                        break;
-                    default:
-                        break;
-                }
+                        
+                    }
+                    else
+                    {
+                        request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
+                    }
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                request.getRequestDispatcher("/jsp/jsp_admin/mostrarUsuarios").forward(request, response);
-            }
+            
         } catch (Exception e) {
             response.sendError(500, e.getMessage());
         }
