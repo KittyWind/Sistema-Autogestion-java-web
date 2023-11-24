@@ -63,6 +63,9 @@
                     </td>
                 </c:otherwise>
             </c:choose>
+            <td class="tabletd">
+                <a href="usuarioEditar?idUsuario=${usuario.idUsuario}&origen=mostrarUsuarios">editar</a>
+            </td>
         </tr>
         </c:forEach>
     </table>

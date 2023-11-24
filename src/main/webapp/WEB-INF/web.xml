@@ -47,6 +47,8 @@
         <url-pattern>/jsp/jsp_admin/mostrarUsuarios</url-pattern>
         <url-pattern>/jsp/jsp_admin/borrarUsuario</url-pattern>
         <url-pattern>/jsp/jsp_admin/activarUsuario</url-pattern>
+        <url-pattern>/jsp/jsp_admin/editarUsuario</url-pattern>
+        <url-pattern>/jsp/jsp_admin/usuarioEditar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AlumnoServlet</servlet-name>

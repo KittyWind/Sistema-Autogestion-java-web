@@ -81,6 +81,11 @@ public class UsuarioServlet extends HttpServlet {
                     usuarioDAO.modificar(ualta);
                     request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
                     break;
+                case "/jsp/jsp_admin/usuarioEditar":
+                    request.setAttribute("Path", servletPath);
+                    request.setAttribute("idUsuario", request.getParameter("idUsuario"));
+                    request.getRequestDispatcher("/jsp/jsp_admin/formUsuario.jsp").forward(request, response);
+                    break;
                 default:
                     break;
             }
@@ -100,7 +105,34 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String servletPath = request.getServletPath();
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+            String email = request.getParameter("email");
+            String clave = request.getParameter("clave");
+            Estado estado = Estado.valueOf(request.getParameter("estado"));
+            int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+            if(nombre != "" && apellido != "" && email != "" && clave != "")
+            {
+                switch (servletPath) {
+                    case "/jsp/jsp_admin/editarUsuario":
+                        UsuarioBean u = new UsuarioBean(idUsuario, nombre, apellido, email, clave, estado);
+                        usuarioDAO.modificar(u);
+                        request.getRequestDispatcher("/jsp/jsp_admin/MenuAdmin.jsp").forward(request, response);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                request.getRequestDispatcher("/jsp/jsp_admin/mostrarUsuarios").forward(request, response);
+            }
+        } catch (Exception e) {
+            response.sendError(500, e.getMessage());
+        }
+        
     }
 
     /**
