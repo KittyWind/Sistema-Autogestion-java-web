@@ -37,8 +37,6 @@
             </th>
             <th class="tableth">
             </th>
-            <th class="tableth">
-            </th>
         </tr>
         <c:forEach items="${alumnos}" var="alumno">
             <c:forEach items="${calificaciones}" var="calificacion">
@@ -61,20 +59,12 @@
                                 <td class="tabletd">
                                     <a href="califEditar?idAlumno=${alumno.idAlumno}&idMateria=${materia.idMateria}&idCalificacion=${calificacion.idCalificacion}&origen=calificacion">editar</a>
                                 </td>
-                                <%-- <td class="tabletd">
-                                    <a href="califBorrar?idCalificacion=${calificacion.idCalificacion}&origen=calificacion">borrar</a>
-                                </td> --%>
                             </tr>
                         </c:if>
                     </c:forEach>
                 </c:if>
             </c:forEach>
         </c:forEach>
-        <tr>
-            <td class="tabletd" colspan="4">
-                <a href="addCalificacion">agregar calificacion</a>
-            </td>
-        </tr>
     </table>
     <a class="asalir" href="./MenuProfesor.jsp">Salir</a>
 </body>

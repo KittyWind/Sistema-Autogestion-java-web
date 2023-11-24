@@ -69,6 +69,7 @@
         <url-pattern>/jsp/jsp_alumnos/materias</url-pattern>
         <url-pattern>/jsp/jsp_profesor/materias</url-pattern>
         <url-pattern>/jsp/jsp_alumnos/materiaDetalle</url-pattern>
+        <url-pattern>/jsp/jsp_profesor/materiasCali</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CalificacionServlet</servlet-name>
@@ -78,6 +79,7 @@
         <url-pattern>/jsp/jsp_profesor/califBorrar</url-pattern>
         <url-pattern>/jsp/jsp_profesor/califEditar</url-pattern>
         <url-pattern>/jsp/jsp_profesor/editarCalif</url-pattern>
+        <url-pattern>/jsp/jsp_profesor/insertarCalif</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

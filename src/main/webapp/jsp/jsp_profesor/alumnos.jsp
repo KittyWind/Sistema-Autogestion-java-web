@@ -33,8 +33,9 @@
             <th class="tableth">
                 Email
             </th>
+            <th class="tableth">
+            </th>
         </tr>
-
         <c:choose>
             <c:when test="${empty alumnos}">
                 <tr>
@@ -56,6 +57,9 @@
                             <td class="tabletd">
                                 ${alumno.email}
                             </td>
+                            <td class="tabletd">
+                                <a href="addCalificacion?idAlumno=${alumno.idAlumno}&origen=cursoDetalle">añadir calificacion</a>
+                            <td>
                         </tr>
                     </c:if>
                 </c:forEach>

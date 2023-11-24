@@ -90,13 +90,16 @@ public class CalificacionServlet extends HttpServlet {
                     request.getRequestDispatcher("/jsp/jsp_profesor/materias").forward(request, response);  
                 break;
                 case "/jsp/jsp_profesor/addCalificacion":
-                    request.getRequestDispatcher("/jsp/jsp_profesor/AgregarCalificaciones.jsp").forward(request, response);
+                    request.setAttribute("Path", servletPath);
+                    request.setAttribute("idAlumno", request.getParameter("idAlumno"));
+                    request.getRequestDispatcher("/jsp/jsp_profesor/materiasCali").forward(request, response);
                 break;
                 case "/jsp/jsp_profesor/califEditar":
+                    request.setAttribute("Path", servletPath);
                     request.setAttribute("idAlumno", request.getParameter("idAlumno"));
                     request.setAttribute("idMateria", request.getParameter("idMateria"));
                     request.setAttribute("idCalificacion", request.getParameter("idCalificacion"));
-                    request.getRequestDispatcher("/jsp/jsp_profesor/editarCalificacion.jsp").forward(request, response);
+                    request.getRequestDispatcher("/jsp/jsp_profesor/formCalif.jsp").forward(request, response);
                 break;
                 case "/jsp/jsp_profesor/califBorrar":
                     int id = Integer.parseInt(request.getParameter("idCalificacion"));
@@ -145,17 +148,23 @@ public class CalificacionServlet extends HttpServlet {
                 String numExamen = request.getParameter("numExamen");
                 if (nota != "" && numExamen != "") {
                     int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
-                    int idMateria = Integer.parseInt(request.getParameter("idMateria"));
+                    
                     int notan= Integer.parseInt(nota);
                     int numExamenn = Integer.parseInt(numExamen);
                     switch (servletPath) {
                         case "/jsp/jsp_profesor/editarCalif":
+                            int idMateria = Integer.parseInt(request.getParameter("idMateria"));
                             int idCalificacion = Integer.parseInt(request.getParameter("idCalificacion"));
                             CalificacionBean c = new CalificacionBean(idCalificacion, notan, numExamenn, idAlumno, idMateria);
                             calificacionDAO.modificar(c);
                             request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request, response);
                         break;
                         case "/jsp/jsp_profesor/insertarCalif":
+                            int idM = Integer.parseInt(request.getParameter("materias"));
+                            CalificacionBean c1 = new CalificacionBean(notan, numExamenn, idAlumno, idM);
+                            calificacionDAO.insertar(c1);
+                            request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request, response);
+                        break;
                         default:
                         break;
                     }
