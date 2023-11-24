@@ -141,26 +141,47 @@ public class CalificacionServlet extends HttpServlet {
             HttpSession session = request.getSession();
             try {
                 String servletPath = request.getServletPath();
-                switch (servletPath){
-                    case "/jsp/jsp_profesor/editarCalif":
-                        String nota = request.getParameter("nota");
-                        String numExamen = request.getParameter("numExamen");
-                        if (nota != "" && numExamen != "") {
-                            int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
-                            int idMateria = Integer.parseInt(request.getParameter("idMateria"));
+                String nota = request.getParameter("nota");
+                String numExamen = request.getParameter("numExamen");
+                if (nota != "" && numExamen != "") {
+                    int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
+                    int idMateria = Integer.parseInt(request.getParameter("idMateria"));
+                    int notan= Integer.parseInt(nota);
+                    int numExamenn = Integer.parseInt(numExamen);
+                    switch (servletPath) {
+                        case "/jsp/jsp_profesor/editarCalif":
                             int idCalificacion = Integer.parseInt(request.getParameter("idCalificacion"));
-                            int notan= Integer.parseInt(nota);
-                            int numExamenn = Integer.parseInt(numExamen);
                             CalificacionBean c = new CalificacionBean(idCalificacion, notan, numExamenn, idAlumno, idMateria);
                             calificacionDAO.modificar(c);
                             request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request, response);
-                        } else {
-                            request.setAttribute("hayError", true);
-                            request.setAttribute("mensajeError", "Datos vacios");
-                            request.getRequestDispatcher("/jsp/jsp_profesor/editarCalificacion.jsp").forward(request, response);;
-                        }
-                    break;       
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    request.setAttribute("hayError", true);
+                    request.setAttribute("mensajeError", "Datos vacios");
+                    request.getRequestDispatcher("/jsp/jsp_profesor/editarCalificacion.jsp").forward(request, response);
                 }
+                // switch (servletPath){
+                //     case "/jsp/jsp_profesor/editarCalif":
+                        
+                //         if (nota != "" && numExamen != "") {
+                //             int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
+                //             int idMateria = Integer.parseInt(request.getParameter("idMateria"));
+                //             int idCalificacion = Integer.parseInt(request.getParameter("idCalificacion"));
+                //             int notan= Integer.parseInt(nota);
+                //             int numExamenn = Integer.parseInt(numExamen);
+                //             CalificacionBean c = new CalificacionBean(idCalificacion, notan, numExamenn, idAlumno, idMateria);
+                //             calificacionDAO.modificar(c);
+                //             request.getRequestDispatcher("/jsp/jsp_profesor/MenuProfesor.jsp").forward(request, response);
+                //         } else {
+                //             request.setAttribute("hayError", true);
+                //             request.setAttribute("mensajeError", "Datos vacios");
+                //             request.getRequestDispatcher("/jsp/jsp_profesor/editarCalificacion.jsp").forward(request, response);;
+                //         }
+                //     break;       
+                // }
             } catch (Exception e) {
                 response.sendError(500,e.getMessage());
             }
